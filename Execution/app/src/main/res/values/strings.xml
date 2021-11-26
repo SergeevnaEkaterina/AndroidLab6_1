@@ -1,0 +1,5 @@
+<resources>
+    <string name="application_name">NotContinue Watch</string>
+    <string name="text_view">Seconds left: %1$d</string>
+    <string name="seconds_left_0">Seconds left: 0</string>
+</resources>
