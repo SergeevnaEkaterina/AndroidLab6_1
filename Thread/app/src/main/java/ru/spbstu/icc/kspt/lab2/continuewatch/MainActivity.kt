@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 } catch (e: InterruptedException) {
                     logMessage("has been stopped")
-                    Thread.currentThread().interrupt()
                 }
             }
         }

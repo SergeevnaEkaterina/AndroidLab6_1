@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun increment(first: Long, second: Long): Long {
         return ((first - second) / 1000)
     }
+
     private fun convertValueToString(time: Long): String {
         return getString(
             R.string.text_view, time
@@ -42,26 +43,26 @@ class MainActivity : AppCompatActivity() {
             apply()
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textSecondsLeft = findViewById(R.id.textSecondsLeft)
         sharedPreferences = getSharedPreferences("Seconds left", Context.MODE_PRIVATE)
-        textSecondsLeft.text = convertValueToString(getFromSharedPreferences("Seconds left", secondsLeft)
-            .toLong())
+        textSecondsLeft.text = convertValueToString(
+            getFromSharedPreferences("Seconds left", secondsLeft)
+                .toLong()
+        )
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 while (true) {
                     delay(1000)
                     logMessage("is executing")
-                    textSecondsLeft.post {
-                        textSecondsLeft.text = convertValueToString(
-                            secondsLeft
-                                    + increment(System.currentTimeMillis(), timeOfStart)
-                        )
-
-                    }
+                    textSecondsLeft.text = convertValueToString(
+                        secondsLeft
+                                + increment(System.currentTimeMillis(), timeOfStart)
+                    )
                 }
             }
         }
@@ -79,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         putToSharedPreferences("Seconds left", secondsLeft)
         super.onStop()
     }
-
 
 
 }
